@@ -6,36 +6,59 @@ from matomo_cli.environment import Environment
 
 @click.command()
 @click.argument("api", required=True)
-@click.option("--format", "-f", default='tsv', help="Format to output (json, tsv and xml supported)")
+@click.option("--url", "-f", envvar='MATOMO_URL', help="URL to Matomo instance")
+@click.option("--token", "-f", envvar='MATOMO_TOKEN', help="Matomo auth token")
+@click.option("--format", "-f", envvar='MATOMO_FORMAT', default='tsv', help="Format to output (original, json, tsv and xml supported)")
 @click.option("--method", "-m", default='API.getMatomoVersion', help="Method to use (like: API.getMatomoVersion)")
-@click.option("--idsite", "-i", default='1', type=int, help="idsite to ask for")
-@click.option("--idsites", "-i", default='1', help="Comma seperated lists for sites")
-@click.option("--segmentname", "-sn", help="Segment name")
-@click.option("--period", "-p", default='day', help="Period to ask for (like day, month, year)")
-@click.option("--date", "-d", default='today', help="Date to use (like today, yesterday or 2024-10-02)")
-@click.option("--show_columns", "-sc", help="Limit which columns are shown")
+@click.option("--id_site", "-i", envvar='MATOMO_ID_SITE', default='1', type=int, help="idsite to ask for")
+@click.option("--id_sites", "-is", envvar='MATOMO_ID_SITES', default='1', help="Comma seperated lists for sites")
+@click.option("--segment_name", "-sn", help="Segment name")
+@click.option("--period", "-p", envvar='MATOMO_PERIOD', default='day', help="Period to ask for (like day, month, year)")
+@click.option("--date", "-d", envvar='MATOMO_DATE', default='today', help="Date to use (like today, yesterday or 2024-10-02)")
+@click.option("--show_columns", "-sc", help="Limit which columns are")
+@click.option("--site_name", "-sn", help="Site name")
+@click.option("--api_module", "-am", help="API module")
+@click.option("--api_action", "-ac", help="API action")
+@click.option("--serialize", "-se", type=int, help="Serialize (1 or 0)")
+@click.option("--limit", "-l", type=int,  default='1', help="Limit result to this number")
+@click.option("--offset", "-o", type=int,  default='0', help="Offset result")
 
-def cli(api: str, format, method, idsite, idsites, segmentname, period, date, show_columns) -> None:
+def cli(
+    api: str,
+    url,
+    token,
+    format,
+    method,
+    id_site,
+    id_sites,
+    segment_name,
+    period,
+    date,
+    show_columns,
+    site_name,
+    api_module,
+    api_action,
+    serialize,
+    limit,
+    offset
+    ) -> None:
 
-    environment = Environment()
-    environment.check_environment()
-
-    api_url = environment.url
+    api_url = url
 
     payload = {
         'module': 'API',
         'method': method,
         'format': format,
-        'token_auth': environment.token,
+        'token_auth': token,
     }
-    if idsite is not None:
-        payload['idSite'] = idsite
+    if id_site is not None:
+        payload['idSite'] = id_site
 
-    if idsites is not None:
-        payload['idSites'] = idsites
+    if id_sites is not None:
+        payload['idSites'] = id_sites
 
-    if segmentname is not None:
-        payload['segmentName'] = segmentname
+    if segment_name is not None:
+        payload['segmentName'] = segment_name
 
     if period is not None:
         payload['period'] = period
@@ -46,19 +69,42 @@ def cli(api: str, format, method, idsite, idsites, segmentname, period, date, sh
     if show_columns is not None:
         payload['showColumns'] = show_columns
 
+    if site_name is not None:
+        payload['siteName'] = site_name
+        if method == 'SitesManager.addSite':
+          payload.pop('idSite', None)
+
+    if api_module is not None:
+        payload['apiModule'] = api_module
+
+    if api_action is not None:
+        payload['apiAction'] = api_action
+
+    if serialize is not None:
+        payload['serialize'] = serialize
+
+    if limit is not None:
+        payload['limit'] = limit
+
+    if offset is not None:
+        payload['offset'] = offset
+
+
     response = requests.post(api_url, params=payload)
 
     if response.status_code == 200:
       if (format == 'xml'):
-        websites = response.text
-        print(websites)
+        result = response.text
+        print(result)
+      if (format == 'original'):
+        result = response.text
+        print(result)
       if (format == 'tsv'):
-        websites = response.text
-        print_tsv(websites)
+        result = response.text
+        print_tsv(result)
       if (format == 'json'):
-        websites = response.json()
-        print(websites)
-
+        result = response.json()
+        print(result)
 
 def print_tsv(tsv_data):
     # Split the TSV data by lines and tabs
