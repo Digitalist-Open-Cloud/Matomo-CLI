@@ -11,8 +11,13 @@ The cli tool needs two environment variables to be set, the url of the matomo in
 ## Usage
 
 ```sh
-matomo api --method MultiSites.getAll --period=month --date=2024-08-20 --show_columns nb_actions
+matomo api --method MultiSites.getAll --period month --date 2024-08-20 --show_columns nb_actions
 ```
 
-The method you provide is API call the tool will do.
+The method you provide is the API call the tool will do (see your Matomo installation on what API:s you could use)
 
+## Installation
+
+```sh
+pipx install git+https://github.com/Digitalist-Open-Cloud/Matomo-CLI.git
+```
