@@ -6,14 +6,14 @@ from matomo_cli.environment import Environment
 
 @click.command()
 @click.argument("api", required=True)
-@click.option("--format", "-f", default='tsv')
-@click.option("--method", "-m", default='API.getMatomoVersion')
-@click.option("--idsite", "-i", default='1')
-@click.option("--idsites", "-i", default='1')
-@click.option("--segmentname", "-sn")
-@click.option("--period", "-p", default='day')
-@click.option("--date", "-d", default='today')
-@click.option("--show_columns", "-sc")
+@click.option("--format", "-f", default='tsv', help="Format to output (json, tsv and xml supported)")
+@click.option("--method", "-m", default='API.getMatomoVersion', help="Method to use (like: API.getMatomoVersion)")
+@click.option("--idsite", "-i", default='1', type=int, help="idsite to ask for")
+@click.option("--idsites", "-i", default='1', help="Comma seperated lists for sites")
+@click.option("--segmentname", "-sn", help="Segment name")
+@click.option("--period", "-p", default='day', help="Period to ask for (like day, month, year)")
+@click.option("--date", "-d", default='today', help="Date to use (like today, yesterday or 2024-10-02)")
+@click.option("--show_columns", "-sc", help="Limit which columns are shown")
 
 def cli(api: str, format, method, idsite, idsites, segmentname, period, date, show_columns) -> None:
 
