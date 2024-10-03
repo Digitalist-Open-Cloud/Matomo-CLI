@@ -50,6 +50,14 @@ or
 pipx install git+https://github.com/Digitalist-Open-Cloud/Matomo-CLI.git
 ```
 
+or run as docker image:
+
+```sh
+docker run digitalist/matomo-cli matomo --help
+```
+
+Docker releases of the cli you can find at [Docker hub](https://hub.docker.com/r/digitalist/matomo-cli).
+
 ## Known supported API methods
 
 The Matomo API has many methods, and could be extended with plugins, here is a list of methods we know this tool is supporting. Please note, that for now, some methods only works well with json and xml output. And for all them, not all possible options is available in the tool yet.
