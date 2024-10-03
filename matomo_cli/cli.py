@@ -5,7 +5,6 @@ from .api import api
 @click.group()
 def cli():
     """Simple and basic CLI tool for Matomo"""
-    pass
 
 cli.add_command(api)
 

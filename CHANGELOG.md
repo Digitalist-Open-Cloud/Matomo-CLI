@@ -5,6 +5,7 @@
 ### Changed
 
 - Move api to it's own file, start to use groups in click.
+- option `format` changed to `output_format`
 
 ### Added
 

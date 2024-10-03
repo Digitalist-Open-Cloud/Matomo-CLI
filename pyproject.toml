@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "matomo-cli"
-version = "0.1.1"
-description = ""
+version = "0.1.2"
+description = "A very simple and basic cli tool for Matomo API"
 authors = ["Mikke Schirén <mikke.schiren@digitalist.com>"]
 readme = "README.md"
 
@@ -10,7 +10,6 @@ python = "^3.12"
 requests = "^2.32.3"
 click = "^8.1.7"
 rich-click = "^1.8.3"
-
 
 [build-system]
 requires = ["poetry-core"]

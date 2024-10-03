@@ -32,6 +32,13 @@ The method you provide is the API call the tool will do (see your Matomo install
 ## Installation
 
 ```sh
+pip install matomo-cli
+
+```
+
+or
+
+```sh
 pipx install git+https://github.com/Digitalist-Open-Cloud/Matomo-CLI.git
 ```
 
@@ -46,9 +53,13 @@ The Matomo API has many methods, and could be extended with plugins, here is a l
 | API.getPhpVersion |
 | API.getIpFromHeader |
 | API.getSettings |
+| BotTracker.defaultBots |
+| BotTracker.getTop10 |
 | MultiSites.getAll |
 | PagePerformance.get |
 | SitesManager.addSite |
 | SitesManager.deleteSite |
+| SitesManager.getAllSites |
+| SitesManager.getAllSitesId |
 | SitesManager.getJavascriptTag |
 | _Etc._ |
