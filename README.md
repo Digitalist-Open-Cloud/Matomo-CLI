@@ -21,6 +21,13 @@ Many options could be replaced with environment variables.
 ## Usage
 
 ```sh
+
+matomo --help
+matomo api --help
+
+```
+
+```sh
 export MATOMO_URL=https://mymatomo.instance/index.php
 export MATOMO_TOKEN=DHJSHGUAGU8383
 
