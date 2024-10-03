@@ -1,8 +1,8 @@
 # Readme
 
-This is a very simple and limited cli tool for Matomo API requests.
+This is a very simple and limited cli tool for Matomo API requests and a [Prometheus exporter](https://prometheus.io/) for Matomo.
 
-Very limited support for anything in general. This was created as a need for a Prometheus exporter for Matomo, and we needed a base to do the calls to Matomo. Hopefully it could be used and developed together with the community.
+Very limited support for anything in general regarding API. This was created as a need for a Prometheus exporter for Matomo, and we, [Digitalist Open Cloud](https://digitalist.cloud/), needed a base to test calls to Matomo. Hopefully it could be used and developed together with the community.
 
 ## Environment variables
 
@@ -78,3 +78,51 @@ See:
 
 - <https://developer.matomo.org/api-reference>
 - <https://glossary.matomo.org/>
+
+## Prometheus exporter
+
+The Matomo Prometheus exporter, exposes metrics from your Matomo instance.
+
+| Metric | Description |
+| ------ | ----------- |
+| `matomo_version` | Your version of Matomo |
+| `matomo_php_version` | Which PHP version you are running |
+| `matomo_total_users` | Total of users |
+| `matomo_total_non_excluded_users` | With the variable `MATOMO_EXCLUDE_USERS` you can exclude users from this count |
+| `matomo_super_users` | Total number of super users |
+| `matomo_number_of_segments` | Total number of segments |
+| `matomo_number_of_sites` | Total number of sites |
+| `matomo_number_of_actions_YEAR_MONTH` | Number of actions per `YEAR` and `MONTH` |
+
+Start the exporter with:
+
+```sh
+export MATOMO_URL=mymatomo.instance
+export TOKEN=myauthtoken
+
+python3 matomo_cli/prometheus.py
+```
+
+### Environment variables:
+
+| Environment Variable | Description             | Default | Required |
+| -------------------- | ----------------------  | ------- | -------- |
+| MATOMO_URL           | URL to Matomo instance  | -       | Yes      |
+| MATOMO_TOKEN         | Access token for Matomo | -       | Yes      |
+| MATOMO_EXPORTER_PORT | Port for the exporter   | 9110    | No       |
+| MATOMO_EXCLUDE_USERS | Comma separated list of emails to exclude for user metrics | - | No |
+| MATOMO_EXPORTER_UPDATE | How often to update metrics (in seconds) | 300 | No |
+| MATOMO_ACTIONS_FROM_YEAR | From which year to count number of actions / month | 2024 | No |
+
+Note about `MATOMO_EXCLUDE_USERS` - this could be used like exact matches, or partial, comma separated like:
+`MATOMO_EXCLUDE_USERS=me@domain.com,internal.com,external`.
+
+## License
+
+Copyright (C) 2024 Digitalist Open Cloud <cloud@digitalist.com>
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>.
