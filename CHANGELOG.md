@@ -1,5 +1,19 @@
 # Change log
 
+## [0.1.2] - 2024-10-03
+
+### Changed
+
+- Move api to it's own file, start to use groups in click.
+
+### Added
+
+- Some colors to output
+
+### Fixed
+
+- Shorthand options that got wrong.
+
 ## [0.1.1] - 2024-10-02
 
 ### Added
@@ -11,7 +25,6 @@
 ### Changed
 
 - Some option names for api, for a list for options, run `matomo api --help`
-
 
 ## [0.1.0] - 2024-10-02
 
