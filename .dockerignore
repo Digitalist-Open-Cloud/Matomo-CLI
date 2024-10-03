@@ -1,0 +1,7 @@
+dist
+matomo_cli
+tests
+CHANGELOG.md
+poetry.lock
+pyproject.toml
+.git

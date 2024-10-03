@@ -1,5 +1,12 @@
 # Change log
 
+## [0.1.5] - 2024-10-03
+
+### Added
+
+- Dockerfile for Prometheus exporter
+- Link to Docker hub for docker container for the Prometheus exporter
+
 ## [0.1.4] - 2024-10-03
 
 ### Added

@@ -92,18 +92,26 @@ The Matomo Prometheus exporter, exposes metrics from your Matomo instance.
 | `matomo_super_users` | Total number of super users |
 | `matomo_number_of_segments` | Total number of segments |
 | `matomo_number_of_sites` | Total number of sites |
-| `matomo_number_of_actions_YEAR_MONTH` | Number of actions per `YEAR` and `MONTH` |
+| `matomo_number_of_actions_YEAR_MONTH` | Number of actions per `MONTH` IN `YEAR` |
 
-Start the exporter with:
+The Matomo Exporter is available at [Docker Hub](https://hub.docker.com/r/digitalist/matomo-exporter).
+
+You can run it with:
 
 ```sh
-export MATOMO_URL=mymatomo.instance
-export TOKEN=myauthtoken
+docker run --rm -d -e MATOMO_TOKEN='MyAuthToken' -e MATOMO_URL=https://matomo.url/index.php -p 9110:9110 matomo-exporter
+```
+
+Or just test it out from the repo:
+
+```sh
+export MATOMO_URL=https://matomo.url/index.php
+export MATOMO_TOKEN=MyAuthToken
 
 python3 matomo_cli/prometheus.py
 ```
 
-### Environment variables:
+### Environment variables for the Prometheus exporter
 
 | Environment Variable | Description             | Default | Required |
 | -------------------- | ----------------------  | ------- | -------- |
