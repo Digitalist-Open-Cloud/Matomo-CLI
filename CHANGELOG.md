@@ -1,5 +1,12 @@
 # Change log
 
+## [0.1.4] - 2024-10-03
+
+### Added
+
+- Prometheus exporter (see README)
+- More environment variables. (see README)
+
 ## [0.1.3] - 2024-10-03
 
 ### Changed
