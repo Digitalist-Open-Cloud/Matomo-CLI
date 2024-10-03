@@ -1,5 +1,15 @@
 # Change log
 
+## [0.1.3] - 2024-10-03
+
+### Changed
+
+- Coding format.
+
+### Added
+
+- License (GPL-3.0-or-later)
+
 ## [0.1.2] - 2024-10-03
 
 ### Changed

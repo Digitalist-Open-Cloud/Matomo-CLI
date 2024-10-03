@@ -12,7 +12,7 @@ import rich_click as click
     "--token", "-t", envvar="MATOMO_TOKEN", help="Matomo auth token"
 )
 @click.option(
-    "--output_format", "-f", envvar="MATOMO_FORMAT", default="tsv",
+    "--output_format", "-f", envvar="MATOMO_OUTPUT_FORMAT", default="tsv",
     help="Format to output (original, json, tsv, and xml supported)"
 )
 @click.option(
@@ -54,10 +54,12 @@ import rich_click as click
     "--serialize", "-se", type=int, help="Serialize (1 or 0)"
 )
 @click.option(
-    "--limit", "-l", type=int, default=1, help="Limit result to this number"
+    "--limit", "-l", envvar="MATOMO_LIMIT", type=int, default=1,
+    help="Limit result to this number"
 )
 @click.option(
-    "--offset", "-o", type=int, default=0, help="Offset result"
+    "--offset", "-o", envvar="MATOMO_OFFSET", type=int, default=0,
+    help="Offset result"
 )
 
 def api(

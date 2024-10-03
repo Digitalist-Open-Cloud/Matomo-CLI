@@ -1,7 +1,8 @@
 [tool.poetry]
 name = "matomo-cli"
-version = "0.1.2"
+version = "0.1.3"
 description = "A very simple and basic cli tool for Matomo API"
+license = "GPL-3.0-or-later"
 authors = ["Mikke Schirén <mikke.schiren@digitalist.com>"]
 readme = "README.md"
 

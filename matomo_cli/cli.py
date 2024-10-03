@@ -1,3 +1,4 @@
+"""Module creating the main cli app."""
 import rich_click as click
 from .api import api
 

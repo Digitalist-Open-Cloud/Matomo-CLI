@@ -16,7 +16,8 @@ Many options could be replaced with environment variables.
 | MATOMO_ID_SITES      | Comma separated id's    | -       |
 | MATOMO_PERIOD        | Period (day, week etc)  | day     |
 | MATOMO_DATE          | today, yesterday, 2024-10-02 etc. | - |
-| MATOMO_FORMAT        | json, xml or tsv.       | tsv       |
+| MATOMO_OUTPUT_FORMAT | json, xml or tsv.       | tsv     |
+| MATOMO_LIMIT         | Number of results       | -       |
 
 ## Usage
 
