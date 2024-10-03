@@ -30,7 +30,7 @@ matomo api --help
 
 ```sh
 export MATOMO_URL=https://mymatomo.instance/index.php
-export MATOMO_TOKEN=DHJSHGUAGU8383
+export MATOMO_TOKEN=MYAUTHTOKENFROMMATOMO
 
 matomo api --method MultiSites.getAll --period month --date 2024-08-20 --show_columns nb_actions
 ```
@@ -71,3 +71,10 @@ The Matomo API has many methods, and could be extended with plugins, here is a l
 | SitesManager.getAllSitesId |
 | SitesManager.getJavascriptTag |
 | _Etc._ |
+
+## General documentation about Matomo API
+
+See:
+
+- <https://developer.matomo.org/api-reference>
+- <https://glossary.matomo.org/>
