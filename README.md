@@ -133,6 +133,71 @@ python3 matomo_cli/prometheus.py
 Note about `MATOMO_EXCLUDE_USERS` - this could be used like exact matches, or partial, comma separated like:
 `MATOMO_EXCLUDE_USERS=me@domain.com,internal.com,external`.
 
+### Deployment example of the Prometheus exporter
+
+You need to have your Matomo URL and you Auth token Base64 encoded into the secret.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: matomo-metrics
+  labels:
+    app: matomo-metrics
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: matomo-metrics
+  template:
+    metadata:
+      labels:
+        app: matomo-metrics
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/path: '/metrics'
+        prometheus.io/port: '9110'
+    spec:
+      containers:
+      - name: matomo-metrics
+        image: digitalist/matomo-exporter:0.1.8
+        ports:
+        - containerPort: 9110
+          protocol: TCP
+        envFrom:
+        - secretRef:
+            name: matomo-metrics
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: matomo-metrics
+spec:
+  selector:
+    app: matomo-metrics
+  ports:
+  - name: metrics
+    protocol: TCP
+    port: 9110
+    targetPort: 9110
+---
+apiVersion: v1
+data:
+  MATOMO_URL: <REPLACE THIS WITH A BASE64 ENCODED URL TO YOUR MATOMO>
+  MATOMO_TOKEN: <REPLACE THIS WITH A BASE54 ENCODED AUTH TOKEN WITH SUPER USER PRIVILEGES>
+kind: Secret
+metadata:
+  name: matomo-metrics
+type: Opaque
+```
+
 ## License
 
 Copyright (C) 2024 Digitalist Open Cloud <cloud@digitalist.com>
