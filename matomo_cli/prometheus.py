@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-"""Prometheus Exporter for Matomos."""
+"""Prometheus Exporter for Matomo."""
 import os
 import re
 import time
@@ -43,7 +43,11 @@ metrics = {
     'number_of_segments': Gauge('matomo_number_of_segments', 'Number of segments'),
     'number_of_sites': Gauge('matomo_number_of_sites', 'Number of sites')
 }
-matomo_actions_gauges = {}
+matomo_actions_gauge = Gauge(
+    'matomo_number_of_actions',
+    'Number of actions per month in Matomo',
+    ['year', 'month']
+)
 
 def fetch_api_data(url, token, method, extra_params=None):
     """Helper function to make API requests to Matomo."""
@@ -127,22 +131,29 @@ def fetch_and_set_sites_count(url, token):
         set_metric(metrics['number_of_sites'], len(data))
         print(f"Number of sites: {len(data)}")
 
-def fetch_and_set_matomo_actions(url, token):
-    """Fetch Matomo actions for each month."""
+def fetch_and_set_matomo_actions(url, token, year):
+    """Fetch Matomo actions for each month, with year and month as labels."""
     current_year = datetime.datetime.now().year
     current_month = datetime.datetime.now().month
 
+    # Loop through the years and months
     for year in range(actions_from_year, current_year + 1):
         for month in range(1, (12 if year < current_year else current_month) + 1):
-            metric_name = f"matomo_number_of_actions_{year}_{month:02d}"
-            actions = fetch_api_data(url, token, "MultiSites.getAll", extra_params={"period": "month", "date": f"{year}-{month:02d}-01"})
+            actions = fetch_api_data(
+              url,
+              token,
+              "MultiSites.getAll",
+              extra_params={"period": "month", "date": f"{year}-{month:02d}-01"}
+            )
 
             if actions and isinstance(actions, list):
+                # Sum up the 'nb_actions' for all sites
                 total_actions = sum(site.get('nb_actions', 0) for site in actions)
-                if metric_name not in matomo_actions_gauges:
-                    matomo_actions_gauges[metric_name] = Gauge(metric_name, f"Number of actions for {year}-{month:02d}")
-                set_metric(matomo_actions_gauges[metric_name], total_actions)
-                print(f"Metric {metric_name} set to {total_actions}")
+
+                # Set the metric with 'year' and 'month' as labels (no new metric creation)
+                matomo_actions_gauge.labels(year=str(year), month=f'{month:02d}').set(total_actions)
+                print(f"Metric matomo_number_of_actions set to {total_actions} for {year}-{month:02d}")
+
 
 def run_exporter():
     """Start the Prometheus exporter and fetch metrics periodically."""
@@ -157,7 +168,7 @@ def run_exporter():
         fetch_and_set_admin_count(MATOMO_URL, MATOMO_TOKEN)
         fetch_and_set_segments_count(MATOMO_URL, MATOMO_TOKEN)
         fetch_and_set_sites_count(MATOMO_URL, MATOMO_TOKEN)
-        fetch_and_set_matomo_actions(MATOMO_URL, MATOMO_TOKEN)
+        fetch_and_set_matomo_actions(MATOMO_URL, MATOMO_TOKEN, actions_from_year)
 
         time.sleep(update_metrics_seconds)
 

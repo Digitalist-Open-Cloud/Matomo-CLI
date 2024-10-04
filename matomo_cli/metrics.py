@@ -43,10 +43,6 @@ def metrics(url, token, matomoMetrics):
     elif matomoMetrics is not None and matomoMetrics == 'php':
         payload['method'] = "API.getPhpVersion"
 
-    elif matomoMetrics is not None and matomoMetrics == 'php':
-        payload['method'] = "API.getPhpVersion"
-
-
     response = requests.post(url, params=payload, timeout=1000)
 
     if response.status_code == 200:
