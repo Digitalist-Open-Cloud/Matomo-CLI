@@ -19,7 +19,7 @@
 
 import requests
 import rich_click as click
-
+import unicodedata
 
 @click.command()
 @click.option(
@@ -106,10 +106,11 @@ def api(
 
     # Handle the response based on output format
     if response.status_code == 200:
+        text = remove_non_utf8_characters(response.text)
         if output_format in ("xml", "original"):
-            print(response.text)
+            print(text)
         elif output_format == "tsv":
-            print_tsv(response.text)
+            print_tsv(text)
         elif output_format == "json":
             print(response.json())
 
@@ -128,6 +129,17 @@ def print_tsv(tsv_data: str) -> None:
         row = line.split("\t")
         print("\t".join(row))
 
+def remove_non_utf8_characters(response):
+    """
+    Remove non-UTF-8 and other problematic characters from a response.
+    """
+    # Normalize the string to remove special characters
+    response = unicodedata.normalize("NFKD", response)
+
+    # Remove non-ASCII characters that could be causing issues
+    clean_response = response.encode('ascii', 'ignore').decode('ascii')
+
+    return clean_response
 
 if __name__ == "__main__":
     api()

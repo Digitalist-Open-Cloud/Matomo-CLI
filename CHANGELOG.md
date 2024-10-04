@@ -1,14 +1,20 @@
 # Change log
 
+## [0.1.8] - 2024-10-04
+
+### Added
+
+- remove_non_utf8_characters for api calls, to clean the output.
+
 ## [0.1.7] - 2024-10-4
 
-## Added
+### Added
 
 - Prometheus exporter: major, minor and patch version for Matomo and PHP as metric labels
 
 ## [0.1.6] - 2024-10-04
 
-## Changed
+### Changed
 
 - Prometheus exporter: changed out of actions count metrics, so month and year now are labels. Example:
 
