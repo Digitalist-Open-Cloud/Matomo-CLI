@@ -100,7 +100,7 @@ The Matomo Prometheus exporter, exposes metrics from your Matomo instance.
 | `matomo_super_users` | Total number of super users |
 | `matomo_number_of_segments` | Total number of segments |
 | `matomo_number_of_sites` | Total number of sites |
-| `matomo_number_of_actions_YEAR_MONTH` | Number of actions per `MONTH` IN `YEAR` |
+| `matomo_number_of_actions` | Number of actions per `month` in `year` |
 
 The Matomo Exporter is available at [Docker Hub](https://hub.docker.com/r/digitalist/matomo-exporter).
 
