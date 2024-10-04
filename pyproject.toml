@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "matomo-cli"
-version = "0.1.6"
+version = "0.1.7"
 description = "CLI and Prometheus exporter for Matomo"
 license = "GPL-3.0-or-later"
 authors = ["Mikke Schirén <mikke.schiren@digitalist.com>"]
