@@ -1,5 +1,12 @@
 # Change log
 
+## [0.1.9] - 2024-10-04
+
+### Added
+
+- example deployment for prometheus exporter in README.
+- example dashboard for Grafana in grafana folder.
+
 ## [0.1.8] - 2024-10-04
 
 ### Added
