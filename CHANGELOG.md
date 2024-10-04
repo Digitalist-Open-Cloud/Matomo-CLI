@@ -1,5 +1,16 @@
 # Change log
 
+## [0.1.6] - 2024-10-04
+
+## Changed
+
+- Prometheus exporter: changed out of actions count metrics, so month and year now are labels. Example:
+
+```sh
+matomo_number_of_actions{month="01",year="2024"} 98118.0
+matomo_number_of_actions{month="02",year="2024"} 100301.0
+```
+
 ## [0.1.5] - 2024-10-03
 
 ### Added
