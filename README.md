@@ -198,6 +198,10 @@ metadata:
 type: Opaque
 ```
 
+### Grafana dashboard
+
+If you are using Grafana, a simple dashboard is added as an example in `grafana` folder.
+
 ## License
 
 Copyright (C) 2024 Digitalist Open Cloud <cloud@digitalist.com>
