@@ -35,8 +35,8 @@ exclude_patterns = [pattern.strip() for pattern in exclude_users_env.split(',') 
 
 # Prometheus metrics definition
 metrics = {
-    'matomo_version': Gauge('matomo_version', 'Version of the Matomo instance', ['full_version']),
-    'php_version': Gauge('matomo_php_version', 'PHP version of the Matomo instance', ['full_version']),
+    'matomo_version': Gauge('matomo_version', 'Version of the Matomo instance', ['full_version','major','minor','patch']),
+    'php_version': Gauge('matomo_php_version', 'PHP version of the Matomo instance', ['full_version','major','minor','patch']),
     'total_users': Gauge('matomo_total_users', 'Number of total users'),
     'non_excluded_users': Gauge('matomo_total_non_excluded_users', 'Number of non excluded users'),
     'admin_users': Gauge('matomo_super_users', 'Number of super users'),
@@ -102,20 +102,52 @@ def fetch_and_set_admin_count(url, token):
         print(f"Number of super users: {len(data)}")
 
 def fetch_and_set_matomo_version(url, token):
-    """Fetch Matomo version."""
+    """Fetch Matomo version and expose it with additional labels for major, minor, and patch."""
     data = fetch_api_data(url, token, "API.getMatomoVersion")
     if data:
         version = data.get('value', 'unknown')
-        set_metric(metrics['matomo_version'], 1, labels={'full_version': version})
-        print(f"Matomo version: {version}")
+
+        # Initialize major, minor, and patch as 'unknown' by default
+        major, minor, patch = 'unknown', 'unknown', 'unknown'
+
+        # Extract major, minor, and patch version numbers using a regex pattern
+        version_match = re.match(r'(\d+)\.(\d+)\.(\d+)', version)
+        if version_match:
+            major, minor, patch = version_match.groups()
+
+        # Set the metric with full version and the parsed major, minor, patch as labels
+        set_metric(metrics['matomo_version'], 1, labels={
+            'full_version': version,
+            'major': major,
+            'minor': minor,
+            'patch': patch
+        })
+        print(f"Matomo version: {version} (major: {major}, minor: {minor}, patch: {patch})")
+
 
 def fetch_and_set_php_version(url, token):
-    """Fetch PHP version."""
+    """Fetch PHP version and expose it with additional labels for major, minor, and patch."""
     data = fetch_api_data(url, token, "API.getPhpVersion")
     if data:
         php_version = data.get('version', 'unknown')
-        set_metric(metrics['php_version'], 1, labels={'full_version': php_version})
-        print(f"PHP version: {php_version}")
+
+        # Initialize major, minor, and patch as 'unknown' by default
+        major, minor, patch = 'unknown', 'unknown', 'unknown'
+
+        # Extract major, minor, and patch version numbers using a regex pattern
+        version_match = re.match(r'(\d+)\.(\d+)\.(\d+)', php_version)
+        if version_match:
+            major, minor, patch = version_match.groups()
+
+        # Set the metric with full version and the parsed major, minor, patch as labels
+        set_metric(metrics['php_version'], 1, labels={
+            'full_version': php_version,
+            'major': major,
+            'minor': minor,
+            'patch': patch
+        })
+        print(f"PHP version: {php_version} (major: {major}, minor: {minor}, patch: {patch})")
+
 
 def fetch_and_set_segments_count(url, token):
     """Fetch number of segments."""

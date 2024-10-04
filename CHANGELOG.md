@@ -1,5 +1,11 @@
 # Change log
 
+## [0.1.7] - 2024-10-4
+
+## Added
+
+- Prometheus exporter: major, minor and patch version for Matomo and PHP as metric labels
+
 ## [0.1.6] - 2024-10-04
 
 ## Changed
