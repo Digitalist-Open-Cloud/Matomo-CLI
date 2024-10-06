@@ -6,9 +6,9 @@ Who are you kidding?
 
 This is one project, with at least two tools (things), and maybe both suck. But the intention is to document these two things the best I can, even when the function doesn’t exist. Never trust the documentation. Trust the code. (cue the studio audience laughing) But not just this code. When there are, like, two or three others contributing from different companies, then we can start talking about trust. But I guess that will never happen. Even important projects that glue together this thing we call life—or the INTERNET (yes, Death, I hear you)—too often only have one contributor. That person, for some reason, had an idea to solve one simple thing and then got a life sentence on that project because the idea was really great (mostly not, but generic enough to be reused).
 
-You know, there’s a thing, similar to death row, called "THE ISSUE QUEUE" (Death, shut up!).
+You know, there’s a thing, similar to death row, called "THE ISSUE QUEUE" (Death, shut up!). There are normally two dreads - too much issues in the issue queue - or the most common - no issues.
 
-That’s why I’m trying to solve two things in this project (which you should never do), so I don’t get stuck here. Someday, maybe, I just want to be a guy who sometimes carries an umbrella.
+That’s why I’m trying to solve two things in this project (which you should never do), so I don’t get stuck here, to get the project more confusing. Someday, maybe, I just want to be a guy who sometimes carries an umbrella un a sunny day in Vienna (and yes, of course, I did travel to Vienna with train, I do not hate the environment, and I didn't mean umbrella in a way that I am using that in a cultural appropriation context, just for a "maybe rain context").
 
 The legend says there are only two hard things in computer science: cache invalidation (no cache in this project, so I guess we failed early) and naming things (yep, failed at that too). The third hard thing, which I humbly want to add, is documentation. This project tries to succeed at that—even providing too much documentation, documenting things that aren’t even in the code or have nothing to do with the code, like my rambling in this README.
 
