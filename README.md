@@ -1,8 +1,47 @@
 # Readme
 
-This is a very simple and limited cli tool for Matomo API requests and a [Prometheus exporter](https://prometheus.io/) for Matomo.
+"Do one thing, and do it well".
 
-Very limited support for anything in general regarding API. This was created as a need for a Prometheus exporter for Matomo, and we, [Digitalist Open Cloud](https://digitalist.cloud/), needed a base to test calls to Matomo. Hopefully it could be used and developed together with the community.
+Who are you kidding?
+
+This is one project, with at least two tools (things), and maybe both suck. But the intention is to document the two things the best I can. Even when the function doesn't exist. Never trust the documentation. Trust the code. (the studio audience laughs) But not just this code. When there is like, two, three others contributing, from different companies, then we can start to talk about trust. But I guess that will never happen. Even important projects, that glue this thing together we call life, or INTERNET (yes death, I hear you), too often only have one contributor. That person for some reason had an idea to solve one simple thing, and then got lifesentence on that project, because the idea was really great (mostly not, but enough generic to be reused).
+
+You know, there are a thing, similar to death row, it is called, "THE ISSUE QUEUE" (death, shut up!)
+
+That is why I am trying to solve two things in this project (which you never should), so I don't get stuck here. Someday, maybe I just want to be a guy that sometimes have an umbrella with me.
+
+The legend says, there are only two hard things in computer science: cache invalidation (no cache in this project, I guess we failed early) and naming things (yes, failed that also). The third thing that is hard, which I humble want to add, is documentation. This project try to succeed on that. Even to provide too much documentation. And document things are not even in the code, or has noting to with the code, like my rambling in this readme.
+
+Readme always get me to thinking on that plant in the movie Little Shop of Horrors. "Feed me!". Someone, or something in this case, tells me to do something, my normal reaction is to do the opposite. "Read me" reaction would be to not to read.
+
+Where were I? Oh...
+
+So, the code, in some ways, seems to be smart, because it is documented, or have many words in a text file. But it is still shit. Like most code. We hope some random LLM will improve our coding. But it will just repeat our mistakes. And mistakes are gifts. So with that, I don't know where we would go.
+
+Project comes to GitHub to die. Someone had, what they thought to be a great idea. Then something the project dependent on updated or got removed, and everything broke, or you got divorced or you decided that you should be a buddhist monk or you wanted to bake bread instead of code. And the code you wrote never got updated. It started with a dream, or an itch, and then...
+
+This project is nothing different. Life happens. But the code is open source, so if you need it, use it. If something suck (well, I know it does, this is Python code, and I know nothing about how to write Python, I just googled, wrote random lines with some logic, added some spaces, asked ChatGPT for guidance and hoped for the best), fork it, change it, contribute back, fuck it, or just use it and keep your mouth shut. There is not warranty. There is no batteries included. There is just you and the endless void.
+
+That is why the timeout in the external calls in the code are just over 16 minutes. I thought that endless, in todays context, should be something around 16 minutes. Then you die, or eat cake.
+
+Anyhow.
+
+So.
+
+Here you find, a very limited project, that try to solve two things, maybe badly, but with the intent to be really well documented. Maybe not the functions or the code or the project, but the documentation itself should be documented.
+
+And for what it is worth, I think people should carry umbrellas more often. And shoes. I like shoes, and umbrellas. And vampires. I forgot to write about that, but that should be different story.
+
+## What is this?
+
+This is a CLI tool for Matomo API requests and a [Prometheus exporter](https://prometheus.io/) for Matomo. I guess we succeeded with one thing, target the same platform. I hope to do worse in next project, like failing to be a CLI tool for one project and in the same time be a bad backup automation tool for a total different project.
+
+This was project was created because we, [Digitalist Open Cloud](https://digitalist.cloud/), wanted:
+
+- CLI for Matomo: For getting things out of Matomo for our web analysts to work with.
+- Prometheus Exporter for Matomo: to collect all the metrics needed for automation in our Matomo SaaS offering.
+
+Intended for our own use cases, but we tried to build generic tools that could be used by the Matomo community.
 
 ## Environment variables
 
@@ -18,6 +57,11 @@ Many options could be replaced with environment variables.
 | MATOMO_DATE          | today, yesterday, 2024-10-02 etc. | - |
 | MATOMO_OUTPUT_FORMAT | json, xml or tsv.       | tsv     |
 | MATOMO_LIMIT         | Number of results       | -       |
+| MATOMO_TRUST_SSL_CERT | Path to local CA | - |
+| MATOMO_EXTRA_OPTIONS | Comma separated list of key and value | - |
+
+Note on MATOMO_TRUST_SSL_CERT - if you are using mkcert, path should be something like this:
+'/Users/MYUSER/Library/Application Support/mkcert/rootCA.pem' - check where it stores the CA in your environment.
 
 ## Usage
 
@@ -60,7 +104,7 @@ Docker releases of the cli you can find at [Docker hub](https://hub.docker.com/r
 
 ## Known supported API methods
 
-The Matomo API has many methods, and could be extended with plugins, here is a list of methods we know this tool is supporting. Please note, that for now, some methods only works well with json and xml output. And for all them, not all possible options is available in the tool yet.
+The Matomo API has many methods, and could be extended with plugins, here is a list of methods we know this tool is supporting. Please note, that for now, some methods only works well with json and xml output.
 
 | Method     |
 | ---------- |
@@ -129,6 +173,7 @@ python3 matomo_cli/prometheus.py
 | MATOMO_EXCLUDE_USERS | Comma separated list of emails to exclude for user metrics | - | No |
 | MATOMO_EXPORTER_UPDATE | How often to update metrics (in seconds) | 300 | No |
 | MATOMO_ACTIONS_FROM_YEAR | From which year to count number of actions / month | 2024 | No |
+| MATOMO_EXTRA_API | Add metrics from the plugin Extra API Information | False | No |
 
 Note about `MATOMO_EXCLUDE_USERS` - this could be used like exact matches, or partial, comma separated like:
 `MATOMO_EXCLUDE_USERS=me@domain.com,internal.com,external`.
@@ -201,6 +246,10 @@ type: Opaque
 ### Grafana dashboard
 
 If you are using Grafana, a simple dashboard is added as an example in `grafana` folder.
+
+## Coffee sponsorship?
+
+Don't buy me a coffee. Normally, I had too many already at this time of the day. If you have use for this project, just tell someone to fuck off that deserve it.
 
 ## License
 
