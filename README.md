@@ -1,36 +1,36 @@
 # Readme
 
-"Do one thing, and do it well".
+"Do one thing, and do it well."
 
 Who are you kidding?
 
-This is one project, with at least two tools (things), and maybe both suck. But the intention is to document the two things the best I can. Even when the function doesn't exist. Never trust the documentation. Trust the code. (the studio audience laughs) But not just this code. When there is like, two, three others contributing, from different companies, then we can start to talk about trust. But I guess that will never happen. Even important projects, that glue this thing together we call life, or INTERNET (yes death, I hear you), too often only have one contributor. That person for some reason had an idea to solve one simple thing, and then got lifesentence on that project, because the idea was really great (mostly not, but enough generic to be reused).
+This is one project, with at least two tools (things), and maybe both suck. But the intention is to document these two things the best I can, even when the function doesn’t exist. Never trust the documentation. Trust the code. (cue the studio audience laughing) But not just this code. When there are, like, two or three others contributing from different companies, then we can start talking about trust. But I guess that will never happen. Even important projects that glue together this thing we call life—or the INTERNET (yes, Death, I hear you)—too often only have one contributor. That person, for some reason, had an idea to solve one simple thing and then got a life sentence on that project because the idea was really great (mostly not, but generic enough to be reused).
 
-You know, there are a thing, similar to death row, it is called, "THE ISSUE QUEUE" (death, shut up!)
+You know, there’s a thing, similar to death row, called "THE ISSUE QUEUE" (Death, shut up!).
 
-That is why I am trying to solve two things in this project (which you never should), so I don't get stuck here. Someday, maybe I just want to be a guy that sometimes have an umbrella with me.
+That’s why I’m trying to solve two things in this project (which you should never do), so I don’t get stuck here. Someday, maybe, I just want to be a guy who sometimes carries an umbrella.
 
-The legend says, there are only two hard things in computer science: cache invalidation (no cache in this project, I guess we failed early) and naming things (yes, failed that also). The third thing that is hard, which I humble want to add, is documentation. This project try to succeed on that. Even to provide too much documentation. And document things are not even in the code, or has noting to with the code, like my rambling in this readme.
+The legend says there are only two hard things in computer science: cache invalidation (no cache in this project, so I guess we failed early) and naming things (yep, failed at that too). The third hard thing, which I humbly want to add, is documentation. This project tries to succeed at that—even providing too much documentation, documenting things that aren’t even in the code or have nothing to do with the code, like my rambling in this README.
 
-Readme always get me to thinking on that plant in the movie Little Shop of Horrors. "Feed me!". Someone, or something in this case, tells me to do something, my normal reaction is to do the opposite. "Read me" reaction would be to not to read.
+READMEs always make me think of that plant in Little Shop of Horrors. "Feed me!" Someone—or something, in this case—tells me to do something, and my normal reaction is to do the opposite. "Read me?" My reaction would be not to read it.
 
-Where were I? Oh...
+Where was I? Oh...
 
-So, the code, in some ways, seems to be smart, because it is documented, or have many words in a text file. But it is still shit. Like most code. We hope some random LLM will improve our coding. But it will just repeat our mistakes. And mistakes are gifts. So with that, I don't know where we would go.
+So, the code, in some ways, seems smart because it’s documented or has lots of words in a text file. But it’s still crap. Like most code. We hope some random LLM will improve our coding, but it’ll just repeat our mistakes. And mistakes are gifts. So with that, I don’t know where we go from here.
 
-Project comes to GitHub to die. Someone had, what they thought to be a great idea. Then something the project dependent on updated or got removed, and everything broke, or you got divorced or you decided that you should be a buddhist monk or you wanted to bake bread instead of code. And the code you wrote never got updated. It started with a dream, or an itch, and then...
+Projects come to GitHub to die. Someone thought they had a great idea. Then something the project depended on got updated or removed, and everything broke—or you got divorced, or decided to become a Buddhist monk, or wanted to bake bread instead of code. And the code you wrote never got updated. It started with a dream or an itch, and then...
 
-This project is nothing different. Life happens. But the code is open source, so if you need it, use it. If something suck (well, I know it does, this is Python code, and I know nothing about how to write Python, I just googled, wrote random lines with some logic, added some spaces, asked ChatGPT for guidance and hoped for the best), fork it, change it, contribute back, fuck it, or just use it and keep your mouth shut. There is not warranty. There is no batteries included. There is just you and the endless void.
+This project is no different. Life happens. But the code is open source, so if you need it, use it. If something sucks (and I know it does—this is Python code, and I know nothing about how to write Python—I just Googled, wrote random lines with some logic, added spaces, asked ChatGPT for guidance, and hoped for the best), fork it, change it, contribute back, trash it, or just use it and keep your mouth shut. There’s no warranty. No batteries included. Just you and the endless void.
 
-That is why the timeout in the external calls in the code are just over 16 minutes. I thought that endless, in todays context, should be something around 16 minutes. Then you die, or eat cake.
+That’s why the timeout for external calls in the code is just over 16 minutes. I thought that "endless" in today’s context should be about 16 minutes. Then you die, or eat cake.
 
 Anyhow.
 
 So.
 
-Here you find, a very limited project, that try to solve two things, maybe badly, but with the intent to be really well documented. Maybe not the functions or the code or the project, but the documentation itself should be documented.
+Here you’ll find a very limited project that tries to solve two things—maybe badly—but with the intent to be really well documented. Maybe not the functions or the code or the project, but at least the documentation itself should be documented.
 
-And for what it is worth, I think people should carry umbrellas more often. And shoes. I like shoes, and umbrellas. And vampires. I forgot to write about that, but that should be different story.
+And for what it’s worth, I think people should carry umbrellas more often. And shoes. I like shoes and umbrellas. And vampires. I forgot to write about that, but that’s a different story.
 
 ## What is this?
 
