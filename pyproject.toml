@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "matomo-cli"
-version = "0.1.9"
+version = "0.1.10"
 description = "CLI and Prometheus exporter for Matomo"
 license = "GPL-3.0-or-later"
 authors = ["Mikke Schirén <mikke.schiren@digitalist.com>"]
@@ -12,6 +12,9 @@ requests = "^2.32.3"
 click = "^8.1.7"
 rich-click = "^1.8.3"
 prometheus-client = "^0.21.0"
+
+[tool.poetry.dev-dependencies]
+black = {version = "^21.7b0", python = ">=3.6.2"}
 
 [build-system]
 requires = ["poetry-core"]

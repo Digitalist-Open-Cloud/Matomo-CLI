@@ -20,14 +20,11 @@
 import rich_click as click
 import requests
 
+
 @click.command()
-@click.option('--metrics', "matomoMetrics", help="Which metrics to return")
-@click.option(
-    "--url", "-u", envvar="MATOMO_URL", help="URL to Matomo instance"
-)
-@click.option(
-    "--token", "-t", envvar="MATOMO_TOKEN", help="Matomo auth token"
-)
+@click.option("--metrics", "matomoMetrics", help="Which metrics to return")
+@click.option("--url", "-u", envvar="MATOMO_URL", help="URL to Matomo instance")
+@click.option("--token", "-t", envvar="MATOMO_TOKEN", help="Matomo auth token")
 def metrics(url, token, matomoMetrics):
     """Fetch metrics"""
 
@@ -37,11 +34,11 @@ def metrics(url, token, matomoMetrics):
         "token_auth": token,
     }
 
-    if matomoMetrics is not None and matomoMetrics == 'version':
-        payload['method'] = "API.getMatomoVersion"
+    if matomoMetrics is not None and matomoMetrics == "version":
+        payload["method"] = "API.getMatomoVersion"
 
-    elif matomoMetrics is not None and matomoMetrics == 'php':
-        payload['method'] = "API.getPhpVersion"
+    elif matomoMetrics is not None and matomoMetrics == "php":
+        payload["method"] = "API.getPhpVersion"
 
     response = requests.post(url, params=payload, timeout=1000)
 
@@ -51,5 +48,7 @@ def metrics(url, token, matomoMetrics):
         # for key, value in result.items():
         #     print(value)
         #     return(value)
+
+
 if __name__ == "__main__":
     metrics()

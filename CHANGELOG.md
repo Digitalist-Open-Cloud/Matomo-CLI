@@ -1,17 +1,29 @@
 # Change log
 
+## [0.1.10] - 2024-10-05
+
+## Changed
+
+- Prometheus Exporter: Refactor some of the Prometheus metrics.
+- Prometheus Exporter & CLI: Add the possibility to use local certs in requests (env. variable MATOMO_TRUST_SSL_CERT that could be set to path of the local CA, like `mkcert`)
+- CLI: Added the option `extra_params` to add extra values to the payload. `extra_params` are added like a comma separated list, like `--extra_params day=today,range=month`
+
+## Removed
+
+- Removed som cli options, this is now replaced with the new
+
 ## [0.1.9] - 2024-10-04
 
 ### Added
 
-- example deployment for prometheus exporter in README.
-- example dashboard for Grafana in grafana folder.
+- Prometheus Exporter: example deployment for prometheus exporter in README.
+- Prometheus Exporter: example dashboard for Grafana in grafana folder.
 
 ## [0.1.8] - 2024-10-04
 
 ### Added
 
-- remove_non_utf8_characters for api calls, to clean the output.
+- CLI: remove_non_utf8_characters for api calls, to clean the output.
 
 ## [0.1.7] - 2024-10-4
 

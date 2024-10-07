@@ -1,8 +1,8 @@
 # Readme
 
-This is a very simple and limited cli tool for Matomo API requests and a [Prometheus exporter](https://prometheus.io/) for Matomo.
+This is a simple CLI tool for Matomo API requests and a [Prometheus exporter](https://prometheus.io/) for Matomo.
 
-Very limited support for anything in general regarding API. This was created as a need for a Prometheus exporter for Matomo, and we, [Digitalist Open Cloud](https://digitalist.cloud/), needed a base to test calls to Matomo. Hopefully it could be used and developed together with the community.
+This was created as a need for a Prometheus exporter for Matomo, and we, [Digitalist Open Cloud](https://digitalist.cloud/), needed a base to test calls to Matomo. Hopefully it could be used and developed together with the community.
 
 ## Environment variables
 
@@ -10,14 +10,18 @@ Many options could be replaced with environment variables.
 
 | Environment Variable | Description             | Default |
 | -------------------- | ----------------------  | ------- |
-| MATOMO_URL           | URL to Matomo instance  | -       |
-| MATOMO_TOKEN         | Access token for Matomo | -       |
-| MATOMO_ID_SITE       | Site ID                 | 1       |
-| MATOMO_ID_SITES      | Comma separated id's    | -       |
-| MATOMO_PERIOD        | Period (day, week etc)  | day     |
-| MATOMO_DATE          | today, yesterday, 2024-10-02 etc. | - |
-| MATOMO_OUTPUT_FORMAT | json, xml or tsv.       | tsv     |
-| MATOMO_LIMIT         | Number of results       | -       |
+| `MATOMO_URL`           | URL to Matomo instance  | -       |
+| `MATOMO_TOKEN`         | Access token for Matomo | -       |
+| `MATOMO_ID_SITE`       | Site ID                 | 1       |
+| `MATOMO_ID_SITES`      | Comma separated id's    | -       |
+| `MATOMO_PERIOD`        | Period (day, week etc)  | day     |
+| `MATOMO_DATE`          | today, yesterday, 2024-10-02 etc. | - |
+| `MATOMO_OUTPUT_FORMAT` | json, xml or tsv.       | tsv     |
+| `MATOMO_LIMIT`         | Number of results       | -       |
+| `MATOMO_TRUST_SSL_CERT` | Path to local CA       | -       |
+| `MATOMO_EXTRA_PARAMS`  | Comma separated list to send in that adds extra query parameters | - |
+
+Note on `MATOMO_TRUST_SSL_CERT` - if you are using mkcert, path should be something like this: `/Users/MYUSER/Library/Application Support/mkcert/rootCA.pem` - check where it stores the CA in your environment.
 
 ## Usage
 
@@ -91,16 +95,22 @@ See:
 
 The Matomo Prometheus exporter, exposes metrics from your Matomo instance.
 
-| Metric | Description |
-| ------ | ----------- |
-| `matomo_version` | Your version of Matomo |
-| `matomo_php_version` | Which PHP version you are running |
-| `matomo_total_users` | Total of users |
-| `matomo_total_non_excluded_users` | With the variable `MATOMO_EXCLUDE_USERS` you can exclude users from this count |
-| `matomo_super_users` | Total number of super users |
-| `matomo_number_of_segments` | Total number of segments |
-| `matomo_number_of_sites` | Total number of sites |
-| `matomo_number_of_actions` | Number of actions per `month` in `year` |
+| Metric | Description | Comment |
+| ------ | ----------- | -------- |
+| `matomo_version_info` | Your version of Matomo | |
+| `matomo_php_version_info` | Which PHP version you are running | |
+| `matomo_total_users` | Total of users | |
+| `matomo_total_non_excluded_users` | With the variable `MATOMO_EXCLUDE_USERS` you can exclude users from this count | |
+| `matomo_super_users` | Total number of super users | |
+| `matomo_number_of_segments` | Total number of segments | |
+| `matomo_number_of_sites` | Total number of sites | |
+| `matomo_number_of_actions` | Number of actions today | |
+| `matomo_number_of_actions_month` | Number of actions per `month` in `year` | |
+| `matomo_archive_start_time` | Archiving started | Part of API Extra Information plugin |
+| `matomo_archive_finish_time` | Archiving finished | Part of API Extra Information plugin |
+| `matomo_invalidations_total` | Total number of archive invalidations | Part of API Extra Information plugin |
+| `matomo_invalidations_queued` | Total number of queued invalidations | Part of API Extra Information plugin |
+| `matomo_invalidations_inprogress` | Total number of invalidations in progress | Part of API Extra Information plugin |
 
 The Matomo Exporter is available at [Docker Hub](https://hub.docker.com/r/digitalist/matomo-exporter).
 
@@ -129,9 +139,12 @@ python3 matomo_cli/prometheus.py
 | MATOMO_EXCLUDE_USERS | Comma separated list of emails to exclude for user metrics | - | No |
 | MATOMO_EXPORTER_UPDATE | How often to update metrics (in seconds) | 300 | No |
 | MATOMO_ACTIONS_FROM_YEAR | From which year to count number of actions / month | 2024 | No |
+| MATOMO_EXTRA_API     | Include metrics from the plugin Extra Api Information | False | No |
 
 Note about `MATOMO_EXCLUDE_USERS` - this could be used like exact matches, or partial, comma separated like:
 `MATOMO_EXCLUDE_USERS=me@domain.com,internal.com,external`.
+
+The plugin Extra Api Information is developed by Digitalist Open Cloud, and could be downloaded from the [Matomo Marketplace](https://plugins.matomo.org/). It provides some extra information from your Matomo instance that is normally not available.
 
 ### Deployment example of the Prometheus exporter
 

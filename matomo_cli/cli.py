@@ -25,6 +25,7 @@ from .metrics import metrics
 def cli():
     """Simple and basic CLI tool for Matomo"""
 
+
 cli.add_command(api)
 cli.add_command(metrics)
 
