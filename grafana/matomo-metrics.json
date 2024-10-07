@@ -34,6 +34,12 @@
       "id": "stat",
       "name": "Stat",
       "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
     }
   ],
   "annotations": {
@@ -112,10 +118,8 @@
         "x": 0,
         "y": 0
       },
-      "hideTimeOverride": true,
+      "hideTimeOverride": false,
       "id": 7,
-      "interval": "1h",
-      "maxDataPoints": 12,
       "options": {
         "barRadius": 0,
         "barWidth": 0.97,
@@ -145,14 +149,15 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
+          "exemplar": false,
           "expr": "max(matomo_number_of_actions_month{namespace=~\"$namespace\"}) by (year, month)",
           "format": "d",
+          "instant": true,
           "legendFormat": "{{year}}-{{month}}",
-          "range": true,
+          "range": false,
           "refId": "A"
         }
       ],
-      "timeFrom": "1h",
       "title": "Number of actions / month",
       "type": "barchart"
     },
@@ -164,7 +169,37 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "thresholds": {
@@ -187,16 +222,16 @@
       },
       "id": 8,
       "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
+        "legend": {
           "calcs": [],
-          "fields": "/^Value$/",
-          "values": false
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
         },
-        "textMode": "auto"
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
       },
       "pluginVersion": "9.5.16",
       "targets": [
@@ -214,7 +249,7 @@
         }
       ],
       "title": "Number of actions / day",
-      "type": "stat"
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -272,10 +307,12 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
+          "exemplar": false,
           "expr": "matomo_php_version_info{namespace=~\"$namespace\"}",
           "format": "table",
+          "instant": true,
           "legendFormat": "__auto",
-          "range": true,
+          "range": false,
           "refId": "A"
         }
       ],
@@ -338,10 +375,12 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
+          "exemplar": false,
           "expr": "matomo_version_info{namespace=~\"$namespace\"}",
           "format": "table",
+          "instant": true,
           "legendFormat": "__auto",
-          "range": true,
+          "range": false,
           "refId": "A"
         }
       ],
@@ -404,10 +443,12 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
+          "exemplar": false,
           "expr": "matomo_super_users{namespace=~\"$namespace\"}",
           "format": "table",
+          "instant": true,
           "legendFormat": "__auto",
-          "range": true,
+          "range": false,
           "refId": "A"
         }
       ],
@@ -470,10 +511,12 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
+          "exemplar": false,
           "expr": "matomo_total_users{namespace=~\"$namespace\"}",
           "format": "table",
+          "instant": true,
           "legendFormat": "__auto",
-          "range": true,
+          "range": false,
           "refId": "A"
         }
       ],
@@ -536,10 +579,12 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
+          "exemplar": false,
           "expr": "matomo_number_of_segments{namespace=~\"$namespace\"}",
           "format": "table",
+          "instant": true,
           "legendFormat": "__auto",
-          "range": true,
+          "range": false,
           "refId": "A"
         }
       ],
@@ -602,10 +647,12 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
+          "exemplar": false,
           "expr": "matomo_number_of_sites{namespace=~\"$namespace\"}",
           "format": "table",
+          "instant": true,
           "legendFormat": "__auto",
-          "range": true,
+          "range": false,
           "refId": "A"
         }
       ],
@@ -645,13 +692,13 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Matomo Exporter",
   "uid": "dfe1c308-ff8b-4ab0-b7d4-911902c93b38",
-  "version": 19,
+  "version": 22,
   "weekStart": ""
 }
