@@ -7,7 +7,7 @@
 ## Changed
 
 - `charset-normalizer` updated to 3.4.0
-- The check for if using Extra Api Information, set variable from environment variable.
+- Prometheus Exporter: The check for if using Extra Api Information, set variable from environment variable.
 
 ## [0.1.10] - 2024-10-06
 
@@ -19,7 +19,7 @@
 
 ## Removed
 
-- Removed som cli options, this is now replaced with the new
+- CLI: Removed some not so common cli options, this is now replaced with the new `extra_params` option.
 
 ## [0.1.9] - 2024-10-04
 
