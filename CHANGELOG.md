@@ -1,5 +1,14 @@
 # Change log
 
+---
+
+## [0.1.11] - 2024-10-10
+
+## Changed
+
+- `charset-normalizer` updated to 3.4.0
+- The check for if using Extra Api Information, set variable from environment variable.
+
 ## [0.1.10] - 2024-10-06
 
 ## Changed

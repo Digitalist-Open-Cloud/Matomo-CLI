@@ -15,6 +15,7 @@ UPDATE_INTERVAL = int(os.getenv("MATOMO_EXPORTER_UPDATE", "300"))
 ACTIONS_FROM_YEAR = int(os.getenv("MATOMO_ACTIONS_FROM_YEAR", "2024"))
 TRUST_SSL = os.getenv("MATOMO_TRUST_SSL_CERT", "")
 EXTRA_API = os.getenv("MATOMO_EXTRA_API", "")
+use_extra_api = EXTRA_API
 
 # Exclude users based on email patterns
 EXCLUDE_USERS_ENV = os.getenv("MATOMO_EXCLUDE_USERS", "")
@@ -206,7 +207,7 @@ def run_exporter():
         fetch_todays_actions(MATOMO_URL, MATOMO_TOKEN)
         fetch_and_set_matomo_actions_month(MATOMO_URL, MATOMO_TOKEN)
 
-        if EXTRA_API:
+        if use_extra_api:
             fetch_and_set_archive_times(MATOMO_URL, MATOMO_TOKEN)
             fetch_and_set_invalidations_status(MATOMO_URL, MATOMO_TOKEN)
 
